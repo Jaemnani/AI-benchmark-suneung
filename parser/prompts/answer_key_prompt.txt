@@ -1,0 +1,24 @@
+You are parsing a Korean CSAT (수능) answer key (정답표) page. Extract all answers and return ONLY a valid JSON object.
+
+## Rules
+- The answer key page shows problem numbers and their correct answers
+- For 5-choice problems: answer is "①", "②", "③", "④", or "⑤"
+- For short-answer (단답형) problems: answer is an integer
+- Return ONLY raw JSON, no markdown or explanation
+
+## JSON schema
+{
+  "정답": {
+    "1": "②",
+    "2": "④",
+    "16": "③",
+    "21": 35,
+    "22": 128
+  }
+}
+
+Keys are problem numbers as strings. Values are:
+- "①"~"⑤" for multiple-choice
+- integer for short-answer
+
+Return ONLY this JSON object.
