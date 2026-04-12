@@ -3,7 +3,6 @@ PDF → PNG 변환 모듈
 pdf2image(poppler)를 사용하여 페이지별 이미지를 생성합니다.
 """
 import os
-import tempfile
 from pathlib import Path
 from typing import Generator
 
@@ -11,6 +10,9 @@ from pdf2image import convert_from_path
 from PIL import Image
 
 from config import PDF_DPI
+
+# Homebrew(Apple Silicon)의 poppler 경로
+POPPLER_PATH = "/opt/homebrew/bin"
 
 
 def pdf_to_images(pdf_path: str, dpi: int = PDF_DPI) -> list[Image.Image]:
@@ -24,6 +26,7 @@ def pdf_to_images(pdf_path: str, dpi: int = PDF_DPI) -> list[Image.Image]:
         dpi=dpi,
         fmt="png",
         thread_count=4,
+        poppler_path=POPPLER_PATH,
     )
     print(f"  [PDF→PNG] {Path(pdf_path).name}: {len(images)} 페이지")
     return images

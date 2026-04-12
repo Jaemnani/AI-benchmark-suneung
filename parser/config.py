@@ -7,7 +7,8 @@ import os
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 
 MODEL_SONNET = "claude-sonnet-4-6"
-MODEL_OPUS   = "claude-opus-4-6"
+# MODEL_OPUS = "claude-opus-4-6"   # 비용 절감을 위해 비활성화 — 필요 시 주석 해제
+MODEL_OPUS   = MODEL_SONNET         # 현재 Opus 대신 Sonnet 사용
 
 # PDF → PNG 변환 해상도 (DPI)
 PDF_DPI = 200
@@ -27,7 +28,8 @@ SUBJECT_CONFIGS = {
         "출력":   os.path.join(OUTPUT_DIR, "수학영역.json"),
         "프롬프트": "math_prompt.txt",
         "모델_기본": MODEL_SONNET,
-        "모델_고난도": MODEL_OPUS,
+        # "모델_고난도": MODEL_OPUS,   # Opus 비활성화
+        "모델_고난도": MODEL_SONNET,
         # 페이지 기준으로 고난도 모델 전환 (None이면 전체 기본 모델)
         "고난도_시작_문제번호": 21,
         "총_문제수": 30,
@@ -61,7 +63,8 @@ SUBJECT_CONFIGS = {
         "출력":   os.path.join(OUTPUT_DIR, "한국사영역.json"),
         "프롬프트": "history_prompt.txt",
         "모델_기본": MODEL_OPUS,   # 이미지 비중 높아 Opus 사용
-        "모델_고난도": MODEL_OPUS,
+        # "모델_고난도": MODEL_OPUS,   # Opus 비활성화
+        "모델_고난도": MODEL_SONNET,
         "총_문제수": 20,
         "유형": "한국사",
     },
@@ -73,7 +76,8 @@ SUBJECT_CONFIGS = {
         "출력":   os.path.join(OUTPUT_DIR, "과학탐구영역", "물리학Ⅰ.json"),
         "프롬프트": "science_prompt.txt",
         "모델_기본": MODEL_SONNET,
-        "모델_고난도": MODEL_OPUS,
+        # "모델_고난도": MODEL_OPUS,   # Opus 비활성화
+        "모델_고난도": MODEL_SONNET,
         "총_문제수": 20,
         "유형": "과학탐구",
         "과목명": "물리학Ⅰ",
@@ -84,7 +88,8 @@ SUBJECT_CONFIGS = {
         "출력":   os.path.join(OUTPUT_DIR, "과학탐구영역", "화학Ⅰ.json"),
         "프롬프트": "science_prompt.txt",
         "모델_기본": MODEL_SONNET,
-        "모델_고난도": MODEL_OPUS,
+        # "모델_고난도": MODEL_OPUS,   # Opus 비활성화
+        "모델_고난도": MODEL_SONNET,
         "총_문제수": 20,
         "유형": "과학탐구",
         "과목명": "화학Ⅰ",
@@ -95,7 +100,8 @@ SUBJECT_CONFIGS = {
         "출력":   os.path.join(OUTPUT_DIR, "과학탐구영역", "생명과학Ⅰ.json"),
         "프롬프트": "science_prompt.txt",
         "모델_기본": MODEL_SONNET,
-        "모델_고난도": MODEL_OPUS,
+        # "모델_고난도": MODEL_OPUS,   # Opus 비활성화
+        "모델_고난도": MODEL_SONNET,
         "총_문제수": 20,
         "유형": "과학탐구",
         "과목명": "생명과학Ⅰ",
@@ -106,7 +112,8 @@ SUBJECT_CONFIGS = {
         "출력":   os.path.join(OUTPUT_DIR, "과학탐구영역", "지구과학Ⅰ.json"),
         "프롬프트": "science_prompt.txt",
         "모델_기본": MODEL_SONNET,
-        "모델_고난도": MODEL_OPUS,
+        # "모델_고난도": MODEL_OPUS,   # Opus 비활성화
+        "모델_고난도": MODEL_SONNET,
         "총_문제수": 20,
         "유형": "과학탐구",
         "과목명": "지구과학Ⅰ",
@@ -117,7 +124,8 @@ SUBJECT_CONFIGS = {
         "출력":   os.path.join(OUTPUT_DIR, "과학탐구영역", "물리학Ⅱ.json"),
         "프롬프트": "science_prompt.txt",
         "모델_기본": MODEL_SONNET,
-        "모델_고난도": MODEL_OPUS,
+        # "모델_고난도": MODEL_OPUS,   # Opus 비활성화
+        "모델_고난도": MODEL_SONNET,
         "총_문제수": 20,
         "유형": "과학탐구",
         "과목명": "물리학Ⅱ",
@@ -128,7 +136,8 @@ SUBJECT_CONFIGS = {
         "출력":   os.path.join(OUTPUT_DIR, "과학탐구영역", "화학Ⅱ.json"),
         "프롬프트": "science_prompt.txt",
         "모델_기본": MODEL_SONNET,
-        "모델_고난도": MODEL_OPUS,
+        # "모델_고난도": MODEL_OPUS,   # Opus 비활성화
+        "모델_고난도": MODEL_SONNET,
         "총_문제수": 20,
         "유형": "과학탐구",
         "과목명": "화학Ⅱ",
@@ -139,7 +148,8 @@ SUBJECT_CONFIGS = {
         "출력":   os.path.join(OUTPUT_DIR, "과학탐구영역", "생명과학Ⅱ.json"),
         "프롬프트": "science_prompt.txt",
         "모델_기본": MODEL_SONNET,
-        "모델_고난도": MODEL_OPUS,
+        # "모델_고난도": MODEL_OPUS,   # Opus 비활성화
+        "모델_고난도": MODEL_SONNET,
         "총_문제수": 20,
         "유형": "과학탐구",
         "과목명": "생명과학Ⅱ",
@@ -150,7 +160,8 @@ SUBJECT_CONFIGS = {
         "출력":   os.path.join(OUTPUT_DIR, "과학탐구영역", "지구과학Ⅱ.json"),
         "프롬프트": "science_prompt.txt",
         "모델_기본": MODEL_SONNET,
-        "모델_고난도": MODEL_OPUS,
+        # "모델_고난도": MODEL_OPUS,   # Opus 비활성화
+        "모델_고난도": MODEL_SONNET,
         "총_문제수": 20,
         "유형": "과학탐구",
         "과목명": "지구과학Ⅱ",
@@ -185,7 +196,8 @@ SUBJECT_CONFIGS = {
         "출력":   os.path.join(OUTPUT_DIR, "사회탐구영역", "한국지리.json"),
         "프롬프트": "social_prompt.txt",
         "모델_기본": MODEL_SONNET,
-        "모델_고난도": MODEL_OPUS,
+        # "모델_고난도": MODEL_OPUS,   # Opus 비활성화
+        "모델_고난도": MODEL_SONNET,
         "총_문제수": 20,
         "유형": "사회탐구",
         "과목명": "한국지리",
@@ -196,7 +208,8 @@ SUBJECT_CONFIGS = {
         "출력":   os.path.join(OUTPUT_DIR, "사회탐구영역", "세계지리.json"),
         "프롬프트": "social_prompt.txt",
         "모델_기본": MODEL_SONNET,
-        "모델_고난도": MODEL_OPUS,
+        # "모델_고난도": MODEL_OPUS,   # Opus 비활성화
+        "모델_고난도": MODEL_SONNET,
         "총_문제수": 20,
         "유형": "사회탐구",
         "과목명": "세계지리",
@@ -264,7 +277,8 @@ SUBJECT_CONFIGS = {
         "출력":   os.path.join(OUTPUT_DIR, "제2외국어한문영역", "독일어Ⅰ.json"),
         "프롬프트": "foreign_lang_prompt.txt",
         "모델_기본": MODEL_OPUS,
-        "모델_고난도": MODEL_OPUS,
+        # "모델_고난도": MODEL_OPUS,   # Opus 비활성화
+        "모델_고난도": MODEL_SONNET,
         "총_문제수": 30,
         "유형": "제2외국어한문",
         "과목명": "독일어Ⅰ",
@@ -276,7 +290,8 @@ SUBJECT_CONFIGS = {
         "출력":   os.path.join(OUTPUT_DIR, "제2외국어한문영역", "프랑스어Ⅰ.json"),
         "프롬프트": "foreign_lang_prompt.txt",
         "모델_기본": MODEL_OPUS,
-        "모델_고난도": MODEL_OPUS,
+        # "모델_고난도": MODEL_OPUS,   # Opus 비활성화
+        "모델_고난도": MODEL_SONNET,
         "총_문제수": 30,
         "유형": "제2외국어한문",
         "과목명": "프랑스어Ⅰ",
@@ -288,7 +303,8 @@ SUBJECT_CONFIGS = {
         "출력":   os.path.join(OUTPUT_DIR, "제2외국어한문영역", "스페인어Ⅰ.json"),
         "프롬프트": "foreign_lang_prompt.txt",
         "모델_기본": MODEL_OPUS,
-        "모델_고난도": MODEL_OPUS,
+        # "모델_고난도": MODEL_OPUS,   # Opus 비활성화
+        "모델_고난도": MODEL_SONNET,
         "총_문제수": 30,
         "유형": "제2외국어한문",
         "과목명": "스페인어Ⅰ",
@@ -300,7 +316,8 @@ SUBJECT_CONFIGS = {
         "출력":   os.path.join(OUTPUT_DIR, "제2외국어한문영역", "중국어Ⅰ.json"),
         "프롬프트": "foreign_lang_prompt.txt",
         "모델_기본": MODEL_OPUS,
-        "모델_고난도": MODEL_OPUS,
+        # "모델_고난도": MODEL_OPUS,   # Opus 비활성화
+        "모델_고난도": MODEL_SONNET,
         "총_문제수": 30,
         "유형": "제2외국어한문",
         "과목명": "중국어Ⅰ",
@@ -312,7 +329,8 @@ SUBJECT_CONFIGS = {
         "출력":   os.path.join(OUTPUT_DIR, "제2외국어한문영역", "일본어Ⅰ.json"),
         "프롬프트": "foreign_lang_prompt.txt",
         "모델_기본": MODEL_OPUS,
-        "모델_고난도": MODEL_OPUS,
+        # "모델_고난도": MODEL_OPUS,   # Opus 비활성화
+        "모델_고난도": MODEL_SONNET,
         "총_문제수": 30,
         "유형": "제2외국어한문",
         "과목명": "일본어Ⅰ",
@@ -324,7 +342,8 @@ SUBJECT_CONFIGS = {
         "출력":   os.path.join(OUTPUT_DIR, "제2외국어한문영역", "러시아어Ⅰ.json"),
         "프롬프트": "foreign_lang_prompt.txt",
         "모델_기본": MODEL_OPUS,
-        "모델_고난도": MODEL_OPUS,
+        # "모델_고난도": MODEL_OPUS,   # Opus 비활성화
+        "모델_고난도": MODEL_SONNET,
         "총_문제수": 30,
         "유형": "제2외국어한문",
         "과목명": "러시아어Ⅰ",
@@ -336,7 +355,8 @@ SUBJECT_CONFIGS = {
         "출력":   os.path.join(OUTPUT_DIR, "제2외국어한문영역", "아랍어Ⅰ.json"),
         "프롬프트": "foreign_lang_prompt.txt",
         "모델_기본": MODEL_OPUS,
-        "모델_고난도": MODEL_OPUS,
+        # "모델_고난도": MODEL_OPUS,   # Opus 비활성화
+        "모델_고난도": MODEL_SONNET,
         "총_문제수": 30,
         "유형": "제2외국어한문",
         "과목명": "아랍어Ⅰ",
@@ -349,7 +369,8 @@ SUBJECT_CONFIGS = {
         "출력":   os.path.join(OUTPUT_DIR, "제2외국어한문영역", "베트남어Ⅰ.json"),
         "프롬프트": "foreign_lang_prompt.txt",
         "모델_기본": MODEL_OPUS,
-        "모델_고난도": MODEL_OPUS,
+        # "모델_고난도": MODEL_OPUS,   # Opus 비활성화
+        "모델_고난도": MODEL_SONNET,
         "총_문제수": 30,
         "유형": "제2외국어한문",
         "과목명": "베트남어Ⅰ",
@@ -361,7 +382,8 @@ SUBJECT_CONFIGS = {
         "출력":   os.path.join(OUTPUT_DIR, "제2외국어한문영역", "한문Ⅰ.json"),
         "프롬프트": "foreign_lang_prompt.txt",
         "모델_기본": MODEL_OPUS,
-        "모델_고난도": MODEL_OPUS,
+        # "모델_고난도": MODEL_OPUS,   # Opus 비활성화
+        "모델_고난도": MODEL_SONNET,
         "총_문제수": 30,
         "유형": "제2외국어한문",
         "과목명": "한문Ⅰ",
