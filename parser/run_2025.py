@@ -28,9 +28,19 @@ def run_one(key: str, qp: Path, ap: Path) -> dict:
     sheets = parse_answer_sheet(ap, key)
     save_sheets(sheets, OUT / "answers" / f"{key}.json")
 
-    # Self-check: questions should be 1..N contiguous
-    nums = sorted(q.number for q in paper.questions)
-    contiguous = nums == list(range(1, len(nums) + 1)) if nums else False
+    # Self-check: 섹션별로 contiguity 를 검사 (국어/수학은 선택과목이 같은 번호 재사용)
+    from collections import defaultdict
+    by_sec: dict[str, list[int]] = defaultdict(list)
+    for q in paper.questions:
+        by_sec[q.section].append(q.number)
+    sec_summary = {
+        sec: {"n": len(nums), "range": [min(nums), max(nums)]}
+        for sec, nums in by_sec.items()
+    }
+    contiguous = all(
+        sorted(nums) == list(range(min(nums), min(nums) + len(nums)))
+        for nums in by_sec.values()
+    ) if by_sec else False
     # Each question: choices either 0 (단답형) or 5
     choice_counts: dict[int, int] = {}
     for q in paper.questions:
@@ -45,10 +55,12 @@ def run_one(key: str, qp: Path, ap: Path) -> dict:
         "key": key,
         "form": paper.form,
         "n_questions": len(paper.questions),
+        "sections": sec_summary,
         "contiguous": contiguous,
         "choice_histogram": choice_counts,
         "n_passages": len(paper.passages),
         "n_answers_odd": ans_count,
+        "answers_match": len(paper.questions) == ans_count,
     }
 
 
@@ -77,11 +89,18 @@ def main() -> None:
             results.append(run_one(key, qp, ap))
 
     print("\n=== self-test summary ===")
-    print(f"{'subject':<28}{'form':<8}{'N':>4}{'cont':>6}{'pass':>6}{'Aodd':>6}  choices")
+    print(f"{'subject':<28}{'form':<8}{'N':>4}{'cont':>6}{'pass':>6}{'Aodd':>6}{'=Ans':>6}  choices")
     for r in results:
-        print(f"{r['key']:<28}{r['form']:<8}{r['n_questions']:>4}"
-              f"{'Y' if r['contiguous'] else 'N':>6}"
-              f"{r['n_passages']:>6}{r['n_answers_odd']:>6}  {r['choice_histogram']}")
+        print(
+            f"{r['key']:<28}{r['form']:<8}{r['n_questions']:>4}"
+            f"{'Y' if r['contiguous'] else 'N':>6}"
+            f"{r['n_passages']:>6}{r['n_answers_odd']:>6}"
+            f"{'Y' if r['answers_match'] else 'N':>6}  "
+            f"{r['choice_histogram']}"
+        )
+        if r.get("sections") and len(r["sections"]) > 1:
+            for sec, info in r["sections"].items():
+                print(f"    └ {sec}: n={info['n']} range={info['range']}")
 
     # Save summary
     (OUT / "_self_test.json").write_text(
